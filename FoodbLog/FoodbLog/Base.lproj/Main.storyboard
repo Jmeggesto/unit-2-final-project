@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fDy-ci-PHG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fDy-ci-PHG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -168,7 +168,7 @@
                             <outlet property="delegate" destination="Ej6-zJ-2Ib" id="sTd-I6-2Ys"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="VaL-yh-FpB">
+                    <navigationItem key="navigationItem" title="Food bLog" id="VaL-yh-FpB">
                         <barButtonItem key="rightBarButtonItem" image="Fork-32" id="PxL-bH-ed2">
                             <color key="tintColor" red="1" green="0.65156431479999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -214,7 +214,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testCell" id="C0x-uH-KmF" customClass="FoodFeedCustomCVC">
-                                        <rect key="frame" x="20" y="31" width="280" height="380"/>
+                                        <rect key="frame" x="20" y="30.5" width="280" height="380"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
@@ -400,8 +400,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter Experience" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S4o-H3-64W">
-                                <rect key="frame" x="20" y="428" width="560" height="120"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter Your Experience..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S4o-H3-64W">
+                                <rect key="frame" x="20" y="446" width="560" height="102"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="sNh-aw-bmW"/>
@@ -415,7 +415,7 @@
                                 </variation>
                             </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What did you eat? " textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O70-xC-XVh">
-                                <rect key="frame" x="229" y="80" width="142" height="30"/>
+                                <rect key="frame" x="229.5" y="80" width="141.5" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="RfC-Fj-Tp5"/>
@@ -464,6 +464,14 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Scm-Lx-eMz">
+                                <rect key="frame" x="20" y="436" width="560" height="2"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="X34-rw-xQa"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -483,11 +491,15 @@
                             <constraint firstItem="O70-xC-XVh" firstAttribute="centerX" secondItem="zCx-ga-EMq" secondAttribute="centerX" id="MsU-5r-RDZ"/>
                             <constraint firstItem="axR-oS-lFg" firstAttribute="top" secondItem="O70-xC-XVh" secondAttribute="bottom" constant="17" id="O0s-fg-xZd"/>
                             <constraint firstItem="S4o-H3-64W" firstAttribute="trailing" secondItem="zCx-ga-EMq" secondAttribute="trailingMargin" id="Obl-hP-YA7"/>
+                            <constraint firstItem="Scm-Lx-eMz" firstAttribute="trailing" secondItem="zCx-ga-EMq" secondAttribute="trailingMargin" id="OiD-9x-oWS"/>
                             <constraint firstItem="axR-oS-lFg" firstAttribute="centerX" secondItem="zCx-ga-EMq" secondAttribute="centerX" id="Q1A-nB-YiR"/>
                             <constraint firstItem="S4o-H3-64W" firstAttribute="top" secondItem="Xgl-b7-A96" secondAttribute="bottom" constant="8" id="Rx3-JJ-pNK"/>
+                            <constraint firstItem="S4o-H3-64W" firstAttribute="top" secondItem="Scm-Lx-eMz" secondAttribute="bottom" constant="8" id="XIe-NQ-SdQ"/>
                             <constraint firstItem="O70-xC-XVh" firstAttribute="top" secondItem="r4P-YI-o1Z" secondAttribute="bottom" constant="52" id="Y4C-Pj-16i"/>
                             <constraint firstItem="j5v-l0-noz" firstAttribute="centerX" secondItem="zCx-ga-EMq" secondAttribute="centerX" id="ZKw-t4-n02"/>
                             <constraint firstItem="S4o-H3-64W" firstAttribute="leading" secondItem="zCx-ga-EMq" secondAttribute="leadingMargin" id="ZvF-ny-r8m"/>
+                            <constraint firstItem="Scm-Lx-eMz" firstAttribute="leading" secondItem="zCx-ga-EMq" secondAttribute="leadingMargin" id="cAz-cV-XuR"/>
+                            <constraint firstItem="Scm-Lx-eMz" firstAttribute="top" secondItem="Xgl-b7-A96" secondAttribute="bottom" constant="16" id="esL-le-MZT"/>
                             <constraint firstItem="Xgl-b7-A96" firstAttribute="leading" secondItem="j5v-l0-noz" secondAttribute="leading" id="eyr-Zf-Aqm"/>
                             <constraint firstItem="S4o-H3-64W" firstAttribute="leading" secondItem="zCx-ga-EMq" secondAttribute="leading" constant="20" id="hgm-i2-gwn"/>
                             <constraint firstItem="O70-xC-XVh" firstAttribute="centerX" secondItem="zCx-ga-EMq" secondAttribute="centerX" id="lRQ-Tl-mp0"/>
@@ -502,9 +514,10 @@
                                 <exclude reference="Y4C-Pj-16i"/>
                                 <exclude reference="lRQ-Tl-mp0"/>
                                 <exclude reference="rJS-44-Zk1"/>
-                                <exclude reference="Obl-hP-YA7"/>
-                                <exclude reference="ZvF-ny-r8m"/>
                                 <exclude reference="HSu-rc-MSG"/>
+                                <exclude reference="Obl-hP-YA7"/>
+                                <exclude reference="Rx3-JJ-pNK"/>
+                                <exclude reference="ZvF-ny-r8m"/>
                             </mask>
                         </variation>
                     </view>
@@ -594,7 +607,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6yX-jP-zQf" id="Fjl-Fn-Bhc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </tableViewCellContentView>
@@ -635,7 +648,7 @@
         <scene sceneID="W2f-5x-Url">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gS1-7B-Vab" userLabel="Food Blog NavController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Food bLOG" id="0cq-Iv-nhg"/>
+                    <tabBarItem key="tabBarItem" title="Food bLOG" image="Literature Filled-25" id="0cq-Iv-nhg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Prc-zH-yCb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -655,7 +668,7 @@
         <scene sceneID="G51-hF-yYN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Fv-Ue-ehK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Food Feed" id="NgG-CQ-VXD"/>
+                    <tabBarItem key="tabBarItem" title="Food Feed" image="Food Filled-25" id="NgG-CQ-VXD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hAN-nb-hhQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -673,9 +686,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Food Filled-25" width="25" height="25"/>
         <image name="Fork-32" width="32" height="32"/>
         <image name="FullSizeRender" width="640" height="627"/>
         <image name="Instagram" width="32" height="32"/>
+        <image name="Literature Filled-25" width="25" height="25"/>
         <image name="cameraIcon" width="32" height="32"/>
         <image name="plate" width="1400" height="980"/>
     </resources>

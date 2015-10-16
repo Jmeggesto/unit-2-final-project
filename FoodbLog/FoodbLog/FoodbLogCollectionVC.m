@@ -82,7 +82,7 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         
-        PFFile *imageFileFromParse = [[objects objectAtIndex:indexPath] objectForKey:@"image"];
+//        PFFile *imageFileFromParse = [[objects objectAtIndex:indexPath] objectForKey:@"image"];
         
      }];
 

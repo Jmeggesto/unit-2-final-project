@@ -78,6 +78,11 @@
     
     self.foodExperienceTextView.delegate = self;
     
+    self.snapAPhotoButton.backgroundColor = [UIColor whiteColor];
+    self.searchAPicButton.backgroundColor = [UIColor whiteColor];
+    
+    
+    
     
 }
 
@@ -96,6 +101,7 @@
     textField.layer.cornerRadius = 5.0;
     textField.layer.masksToBounds = YES;
     textField.layer.borderColor = [[UIColor orangeColor] CGColor];
+    textField.inputAccessoryView = [[UIView alloc] init];
 }
     
 
@@ -493,8 +499,20 @@
     
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
 -(void)textViewDidBeginEditing:(UITextView *)textView{
       [textView setText:@""];
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    
+    if ([textView.text isEqualToString:@""]) {
+        [textView setText:@"Enter Your Experience..."];
+    }
 }
 
 @end

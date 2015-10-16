@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
+#import <ChameleonFramework/Chameleon.h>
 
 @interface AppDelegate ()
 
@@ -26,6 +27,7 @@
 
     [self setParseDatabase];
     
+    [Chameleon setGlobalThemeUsingPrimaryColor:[UIColor flatOrangeColor] withContentStyle:UIContentStyleLight];
     
     return YES;
 }
