@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
 #import <ChameleonFramework/Chameleon.h>
+#import "FoodLog.h"
 
 @interface AppDelegate ()
 
@@ -18,30 +19,26 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    
-    
-    
-    
-    
 
     [self setParseDatabase];
-    
+
     [Chameleon setGlobalThemeUsingPrimaryColor:[UIColor flatOrangeColor] withContentStyle:UIContentStyleLight];
-    
+
     return YES;
 }
 
 - (void)setParseDatabase {
-    
+
     // [Optional] Power your app with Local Datastore. For more info, go to
     // https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
-    
+
     // Initialize Parse.
     [Parse setApplicationId:@"rjpud8TLiUXDlfbMapE2epIj6lwTPafkhWQInPs3"
                   clientKey:@"je9HpthLghFr4MRHSvWTLlBBxJVb3udoZ8XmTisz"];
-    
+
+    [FoodLog registerSubclass];
+
     // [Optional] Track statistics around application opens.
     // This method should be inside the didFinishLaunchingWithOptions method.
     //[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
