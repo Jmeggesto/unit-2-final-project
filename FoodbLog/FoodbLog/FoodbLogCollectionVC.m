@@ -104,17 +104,17 @@
 
 }
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//
-//    FoodLogDetailViewController *foodLogDetailVC = segue.destinationViewController;
-//
-//    NSIndexPath *ip = [self.collectionView indexPathsForSelectedItems];
-//    
-//    FoodLog *foodLog = [self.allFoodLogObjects objectAtIndex:ip.row];
-//    
-//    // Pass the selected object to the new view controller.
-//    foodLogDetailVC.foodLog = foodLog;
-//    
-//}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    FoodLogDetailViewController *foodLogDetailVC = segue.destinationViewController;
+
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
+    
+    FoodLog *passedFoodLogObject = [self.allFoodLogObjects objectAtIndex:indexPath.row];
+    
+    // Pass the selected object to the new view controller.
+    foodLogDetailVC.foodLogObject = passedFoodLogObject;
+    
+}
 
 @end

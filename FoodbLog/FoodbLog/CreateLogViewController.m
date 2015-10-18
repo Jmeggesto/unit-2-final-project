@@ -390,6 +390,8 @@
     foodLog.name = self.foodLogTitleTextField.text;
     foodLog.image = imageFileToBeSavedOnParse;
     foodLog.notes = self.foodExperienceTextView.text;
+    foodLog.restaurantName = self.restaurantSearchTextField.text;
+    foodLog.recipeName = self.recipeSearchTextField.text; 
 
     // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
     self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{

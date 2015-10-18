@@ -66,6 +66,11 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="foodLogDescription" destination="OEl-OE-ZPR" id="SYd-6g-cWH"/>
+                        <outlet property="foodLogImageView" destination="S1s-Kv-6S7" id="bo2-Y7-RJF"/>
+                        <outlet property="restaurantNameLabel" destination="A81-1R-twc" id="wd6-Hc-bkw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjD-ds-XJO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

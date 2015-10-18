@@ -12,6 +12,6 @@
 
 @interface FoodLogDetailViewController : UIViewController
 
-@property (nonatomic) FoodLog *foodLog; 
+@property (nonatomic) FoodLog *foodLogObject;
 
 @end
