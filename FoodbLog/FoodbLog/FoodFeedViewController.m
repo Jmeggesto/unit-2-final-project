@@ -152,6 +152,48 @@
 }
 -(void)recipeRequestForString:(NSString*)string
 {
+    NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=cbf68b839d22d6b3319ae5779d040090&q=%@", string];
+    AFHTTPRequestOperationManager* managerOne = [[AFHTTPRequestOperationManager alloc]init];
+    AFHTTPRequestOperationManager* managerTwo = [[AFHTTPRequestOperationManager alloc]init];
+    
+    [managerOne GET:URLString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSArray* recipes = responseObject[@"recipes"];
+        
+        self.recipeResultsArray = [[NSMutableArray alloc]init];
+        for(NSDictionary* recipe in recipes){
+            
+            FoodFeedObject* recipeResultObject = [[FoodFeedObject alloc]init];
+            recipeResultObject.imageURLString = recipe[@"image_url"];
+            
+            NSString* getIngredientsString = [NSString stringWithFormat:@"http://food2fork.com/api/get?key=cbf68b839d22d6b3319ae5779d040090&rId=%@", responseObject[@"recipe_id"]];
+                                              
+            
+            [managerTwo GET:getIngredientsString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                
+                
+                recipeResultObject.caption = responseObject[@"recipe"][@"ingredients"];
+                
+                
+                
+            } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+               
+                NSLog(@"you suck");
+                
+            }];
+            
+            
+            [self.recipeResultsArray addObject:recipeResultObject];
+            
+        }
+        
+        [self.collectionView reloadData];
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        NSLog(@"you're a stupid pancake");
+    }];
 
     
     
@@ -159,7 +201,23 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    [textField endEditing:YES];
+    
+    if(self.segmentedControl.selectedSegmentIndex ==0){
+        
+        self.instagramSearchString = textField.text;
+        [self instagramRequestForString:self.instagramSearchString];
+        
+        
+    } else {
+        
+        self.recipeSearchString = textField.text;
+        [self recipeRequestForString:self.recipeSearchString];
+        
+        
+        
+    }
+    
     
     return YES;
 }
