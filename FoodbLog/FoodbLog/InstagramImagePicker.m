@@ -14,7 +14,7 @@
 @implementation InstagramImagePicker
 
 -(void)viewDidLoad{
-    CGFloat leftAndRightPaddings = 32.0;
+    CGFloat leftAndRightPaddings = 6.0;
     CGFloat numberOfItemsPerRow = 3.0;
     CGFloat heightAdjustment = 30.0;
     
@@ -38,8 +38,6 @@
     
     FoodImagePickerCustomCVC *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"foodImagePickerCell" forIndexPath:indexPath];
     
-    cell.layer.masksToBounds = YES;
-    cell.layer.cornerRadius = 10;
     [cell.foodImage sd_setImageWithURL:[NSURL URLWithString:self.imageURLArray[indexPath.row]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         cell.foodImage.image = image;
     }];

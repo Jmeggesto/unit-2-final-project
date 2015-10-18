@@ -10,8 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-
-@import UIKit;
+#import <UIKit/UIKit.h>
+#import <ChameleonFramework/Chameleon.h>
 #import "CreateLogViewController.h"
 #import "InstagramImagePicker.h"
 #import "FoodLog.h"
@@ -98,9 +98,9 @@
 //Method for formatting text fields
 -(void)textFieldFormatting:(UITextField *)textField{
     textField.layer.borderWidth = 1.0f;
-    textField.layer.cornerRadius = 5.0;
+    textField.layer.cornerRadius = 3.0;
     textField.layer.masksToBounds = YES;
-    textField.layer.borderColor = [[UIColor orangeColor] CGColor];
+    textField.layer.borderColor = [[UIColor flatOrangeColor] CGColor];
     textField.inputAccessoryView = [[UIView alloc] init];
 }
 

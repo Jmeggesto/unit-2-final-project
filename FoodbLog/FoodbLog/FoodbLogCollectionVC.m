@@ -7,6 +7,7 @@
 //
 #import <Parse/Parse.h>
 #import <QuartzCore/QuartzCore.h>
+#import <ChameleonFramework/Chameleon.h>
 
 #import "FoodbLogCollectionVC.h"
 #import "FoodbLogCustomHeader.h"
@@ -24,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    CGFloat leftAndRightPaddings = 32.0;
+    CGFloat leftAndRightPaddings = 6.0;
     CGFloat numberOfItemsPerRow = 3.0;
     CGFloat heightAdjustment = 30.0;
 
@@ -66,15 +67,18 @@
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
 
     FoodbLogCustomHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"foodbLogHeaderView" forIndexPath:indexPath];
+    
+    headerView.foodbLogHeaderLabel.textColor = [UIColor flatOrangeColor];
 
     if (kind == UICollectionElementKindSectionHeader) {
 
 
         if (indexPath.section == 0) {
 
-            headerView.foodbLogHeaderLabel.text = @"Food" ;
+            headerView.foodbLogHeaderLabel.text = @"Food";;
         } else {
             headerView.foodbLogHeaderLabel.text = @"Recipes";
+            
         }
     }
 
