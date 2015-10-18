@@ -74,7 +74,8 @@
 
         if (indexPath.section == 0) {
 
-            headerView.foodbLogHeaderLabel.text = @"Food";;
+            headerView.foodbLogHeaderLabel.text = @"Food";
+            headerView.foodbLogHeaderLabel.textColor = [UIColor flatOrangeColor];
         } else {
             headerView.foodbLogHeaderLabel.text = @"Recipes";
             
