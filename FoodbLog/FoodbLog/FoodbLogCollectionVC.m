@@ -106,6 +106,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
+    
+    if ([segue.identifier isEqualToString:@"FoodLogDetailVCSegueIdentifier"]) {
     FoodLogDetailViewController *foodLogDetailVC = segue.destinationViewController;
 
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
@@ -114,6 +116,7 @@
     
     // Pass the selected object to the new view controller.
     foodLogDetailVC.foodLogObject = passedFoodLogObject;
+        }
     
 }
 
