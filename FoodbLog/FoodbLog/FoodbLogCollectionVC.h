@@ -12,4 +12,6 @@
 
 @interface FoodbLogCollectionVC : UICollectionViewController
 
+@property (nonatomic) NSArray *allFoodLogObjects;
+
 @end

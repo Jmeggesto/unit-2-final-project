@@ -379,38 +379,6 @@
 #pragma mark - Save button
 
 - (void)saveButtonTapped {
-//
-//    FDBLogData *aFoodLog = [FDBLogData object];
-//    aFoodLog.foodLogDishTitle = self.foodLogTitleTextField.text;
-//
-//    UIImage *foodLogImageToBeSaved = self.foodLogImageView.image;
-//    NSData* data = UIImageJPEGRepresentation(foodLogImageToBeSaved, 0.5f);
-//    aFoodLog.foodLogImageFile = [PFFile fileWithName:@"Image.jpg" data:data];
-//
-////    self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-//        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
-//    }];
-//
-//    [aFoodLog.foodLogImageFile  saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            // The image has now been uploaded to Parse. Associate it with a new object
-//
-//            [foodLog setObject:imageFileToBeSavedOnParse forKey:@"image"];
-//
-//            [foodLog saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                if (!error) {
-//                    //NSLog(@"Saved");
-//                }
-//                else{
-//                    // Error
-//                    NSLog(@"Error: %@ %@", error, [error userInfo]);
-//                }
-//            }];
-//        }
-//    }];
-
-
-
 
     UIImage *foodLogImageToBeSaved = self.foodLogImageView.image;
     // Convert to JPEG with 50% quality
@@ -421,6 +389,7 @@
     FoodLog *foodLog = [[FoodLog alloc] init];
     foodLog.name = self.foodLogTitleTextField.text;
     foodLog.image = imageFileToBeSavedOnParse;
+    foodLog.notes = self.foodExperienceTextView.text;
 
     // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
     self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
@@ -431,32 +400,9 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
 
-//    [imageFileToBeSavedOnParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            // The image has now been uploaded to Parse. Associate it with a new object
-//
-//            [foodLog setObject:imageFileToBeSavedOnParse forKey:@"image"];
-//
-//            [foodLog saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                if (!error) {
-//                    //NSLog(@"Saved");
-//                }
-//                else{
-//                    // Error
-//                    NSLog(@"Error: %@ %@", error, [error userInfo]);
-//                }
-//            }];
-//        }
-//    }];
-
-
-
-    //foodLog[@"notes"] = self.foodLogNotesTextField.text; // this property has not been created yet inside the VC
     [foodLog saveInBackground];
 
     UIImageWriteToSavedPhotosAlbum(foodLogImageToBeSaved, nil, nil, nil); // saves the snapped images to the camera roll on the device
-
-
 
 }
 
