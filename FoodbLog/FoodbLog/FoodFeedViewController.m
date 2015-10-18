@@ -44,10 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.segmentedControl addTarget:self
-                         action:@selector(controlEventForSegmentedControlChange)
-               forControlEvents:UIControlEventValueChanged];
+    self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"Pictures", @"Recipes"]];
     self.instagramSearchString = @"foodporn";
     self.recipeSearchString = @"pizza";
     
@@ -227,11 +224,10 @@
 
 #pragma mark - Navigation
 
-
--(void)controlEventForSegmentedControlChange
+- (IBAction)controlEventForSegmentedControlChange:(UISegmentedControl*)sender
 {
     
-    if([self.segmentedControl selectedSegmentIndex] == 0){
+    if(sender.selectedSegmentIndex == 0){
         
         [self instagramRequestForString:self.instagramSearchString];
         
@@ -245,6 +241,7 @@
     }
     
 }
+
 
 
 @end
