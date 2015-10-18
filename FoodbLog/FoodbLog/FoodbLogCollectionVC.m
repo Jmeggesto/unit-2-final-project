@@ -13,6 +13,7 @@
 #import "FoodbLogCustomHeader.h"
 #import "FoodbLogCustomCell.h"
 #import "FoodLog.h"
+#import "FoodLogDetailViewController.h"
 
 @interface FoodbLogCollectionVC () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -98,14 +99,22 @@
 
 }
 
-/*
- #pragma mark - Navigation
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"FoodLogDetailVCSegueIdentifier" sender:nil];
 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+}
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//
+//    FoodLogDetailViewController *foodLogDetailVC = segue.destinationViewController;
+//
+//    NSIndexPath *ip = [self.collectionView indexPathsForSelectedItems];
+//    
+//    FoodLog *foodLog = [self.allFoodLogObjects objectAtIndex:ip.row];
+//    
+//    // Pass the selected object to the new view controller.
+//    foodLogDetailVC.foodLog = foodLog;
+//    
+//}
 
 @end
