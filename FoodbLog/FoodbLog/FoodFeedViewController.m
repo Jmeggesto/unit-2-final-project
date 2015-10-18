@@ -9,6 +9,20 @@
 #import "FoodFeedViewController.h"
 #import "FoodFeedCustomCVC.h"
 #import <QuartzCore/QuartzCore.h>
+#import <AFNetworking/AFNetworking.h>
+#import "FoodFeedObject.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
+
+
+
+
+
+
+
+
+
+
 
 @interface FoodFeedViewController ()  <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
 
@@ -16,6 +30,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 
 @property (nonatomic) NSMutableArray* instagramResultsArray;
+@property (nonatomic) NSMutableArray* recipeResultsArray;
+
+
+@property (nonatomic) IBOutlet UISegmentedControl* segmentedControl;
+@property (nonatomic) NSString* instagramSearchString;
+@property (nonatomic) NSString* recipeSearchString;
+
 
 @end
 
@@ -23,6 +44,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.segmentedControl addTarget:self
+                         action:@selector(controlEventForSegmentedControlChange)
+               forControlEvents:UIControlEventValueChanged];
+    self.instagramSearchString = @"foodporn";
+    self.recipeSearchString = @"pizza";
+    
+    
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    [self instagramRequestForString:@"foodporn"];
     
     self.searchTextField.inputAccessoryView = [[UIView alloc] init];
 }
@@ -34,7 +67,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 6;
+    return [self.instagramResultsArray count];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -44,7 +77,85 @@
     cell.layer.masksToBounds = YES;
     cell.layer.cornerRadius = 10;
     
+    if(self.segmentedControl.selectedSegmentIndex == 0){
+    
+    FoodFeedObject* objectForCell = self.instagramResultsArray[indexPath.row];
+    
+    
+    [cell.foodImage sd_setImageWithURL:[NSURL URLWithString:objectForCell.imageURLString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        cell.foodImage.image = image;
+    
+
+    }];
+    } else {
+        
+        FoodFeedObject* objectForCell = self.recipeResultsArray[indexPath.row];
+        [cell.foodImage sd_setImageWithURL:[NSURL URLWithString:objectForCell.imageURLString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            cell.foodImage.image = image;
+            
+            
+        }];
+        
+        
+        
+    }
+    
+    
+    
+    
     return cell;
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+}
+
+-(void)instagramRequestForString:(NSString*)string
+{
+    
+    
+    NSString* urlString = [NSString stringWithFormat:@"https://api.instagram.com/v1/tags/%@/media/recent?client_id=ac0ee52ebb154199bfabfb15b498c067", string];
+    
+    AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSArray* results = responseObject[@"data"];
+        
+        self.instagramResultsArray = [[NSMutableArray alloc]init];
+        
+        for(NSDictionary* result in results){
+            
+            FoodFeedObject* resultObject = [[FoodFeedObject alloc]init];
+            
+            resultObject.imageURLString = result[@"images"][@"standard_resolution"][@"url"];
+            resultObject.caption = result[@"caption"][@"text"];
+            
+            [self.instagramResultsArray addObject:resultObject];
+            
+            
+            
+            
+        }
+        
+        [self.collectionView reloadData];
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        
+        NSLog(@"you fucking dingus");
+        
+    }];
+    
+    
+}
+-(void)recipeRequestForString:(NSString*)string
+{
+
+    
+    
+
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -54,14 +165,27 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+-(void)controlEventForSegmentedControlChange
+{
+    
+    if([self.segmentedControl selectedSegmentIndex] == 0){
+        
+        [self instagramRequestForString:self.instagramSearchString];
+        
+        
+        
+    } else {
+        
+        [self recipeRequestForString:self.recipeSearchString];
+        
+        
+    }
+    
 }
-*/
+
 
 @end

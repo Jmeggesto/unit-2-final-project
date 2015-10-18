@@ -435,7 +435,7 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    [textField endEditing:YES];
 
     return YES;
 }
