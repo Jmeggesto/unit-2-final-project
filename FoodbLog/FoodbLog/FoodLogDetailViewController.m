@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *foodLogImageView;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *foodLogDescription;
+@property (weak, nonatomic) IBOutlet UILabel *dishNameLabel;
 
 @end
 
@@ -22,23 +23,24 @@
     [super viewDidLoad];
     
     
-//    NSString *name;
-//    @property (nonatomic, strong) PFFile *image;
-//    @property (nonatomic, strong) NSString *restaurantName;
-//    @property (nonatomic, strong) NSString *recipeName;
 
-    self.foodLogDescription.text = self.foodLogObject.notes;
+    self.dishNameLabel.text = self.foodLogObject.name;
     self.restaurantNameLabel.text = self.foodLogObject.restaurantName;
     
-//    UIImage *foodLogImageToBeDisplayed = self.foodLogImageView.image;
-//    // Convert to JPEG with 50% quality
-//    NSData* data = UIImageJPEGRepresentation(foodLogImageToBeSaved, 0.5f);
-//    PFFile *foodLogImage = [PFFile fileWithData:data contentType:@"image/png"];
-//    
-//    
-//    
-//    
-//    self.foodLogImageView.image = self.foodLogObject.image;
+    self.foodLogDescription.text = self.foodLogObject.notes;
+    // Note: if the object has a recipe saved, it should display the recipe text in the self.foodLogDescription.text
+
+    PFFile *imageFile = self.foodLogObject.image;
+    
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!data) {
+            return NSLog(@"%@", error);
+        }
+
+        self.foodLogImageView.image = [UIImage imageWithData:data];
+    
+    }];
+
     
 }
 
