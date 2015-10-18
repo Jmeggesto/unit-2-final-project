@@ -44,6 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.segmentedControl addTarget:self
                          action:@selector(controlEventForSegmentedControlChange)
                forControlEvents:UIControlEventValueChanged];
