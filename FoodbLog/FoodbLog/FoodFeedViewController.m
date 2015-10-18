@@ -10,9 +10,10 @@
 #import "FoodFeedCustomCVC.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface FoodFeedViewController ()  <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface FoodFeedViewController ()  <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
 
     @property (nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 
 @property (nonatomic) NSMutableArray* instagramResultsArray;
 
@@ -23,7 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.searchTextField.inputAccessoryView = [[UIView alloc] init];
 }
+
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -43,6 +46,13 @@
     
     return cell;
 }
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
 
 /*
 #pragma mark - Navigation
