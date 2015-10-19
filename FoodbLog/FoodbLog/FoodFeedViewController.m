@@ -29,8 +29,8 @@
     @property (nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 
-@property (nonatomic) NSMutableArray* instagramResultsArray;
-@property (nonatomic) NSMutableArray* recipeResultsArray;
+@property (nonatomic) NSMutableArray<FoodFeedObject*>* instagramResultsArray;
+@property (nonatomic) NSMutableArray<FoodFeedObject*>* recipeResultsArray;
 
 
 @property (nonatomic) IBOutlet UISegmentedControl* segmentedControl;
@@ -44,16 +44,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"Pictures", @"Recipes"]];
+    [self.segmentedControl setSelectedSegmentIndex:0];
     self.instagramSearchString = @"foodporn";
     self.recipeSearchString = @"pizza";
+    
+    NSLog(@"%@", self.instagramResultsArray);
     
     
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    [self instagramRequestForString:@"foodporn"];
+    [self instagramRequestForString:self.instagramSearchString];
     
     self.searchTextField.inputAccessoryView = [[UIView alloc] init];
 }
@@ -151,10 +153,14 @@
 -(void)recipeRequestForString:(NSString*)string
 {
     NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=cbf68b839d22d6b3319ae5779d040090&q=%@", string];
-    AFHTTPRequestOperationManager* managerOne = [[AFHTTPRequestOperationManager alloc]init];
-    AFHTTPRequestOperationManager* managerTwo = [[AFHTTPRequestOperationManager alloc]init];
+    AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
+  
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+   
     
-    [managerOne GET:URLString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    
+    
+    [manager GET:URLString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
         NSArray* recipes = responseObject[@"recipes"];
         
@@ -163,40 +169,69 @@
             
             FoodFeedObject* recipeResultObject = [[FoodFeedObject alloc]init];
             recipeResultObject.imageURLString = recipe[@"image_url"];
+            recipeResultObject.recipeID = recipe[@"recipe_id"];
             
-            NSString* getIngredientsString = [NSString stringWithFormat:@"http://food2fork.com/api/get?key=cbf68b839d22d6b3319ae5779d040090&rId=%@", responseObject[@"recipe_id"]];
+            [self getIngredientsOfRecipe:recipeResultObject];
+            
                                               
             
-            [managerTwo GET:getIngredientsString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-                
-                
-                recipeResultObject.caption = responseObject[@"recipe"][@"ingredients"];
-                
-                
-                
-            } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-               
-                NSLog(@"you suck");
-                
-            }];
+           
             
             
             [self.recipeResultsArray addObject:recipeResultObject];
             
+            NSLog(@"%@", recipeResultObject);
+            
         }
+        
+        
+        
         
         [self.collectionView reloadData];
         
         
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-        NSLog(@"you're a stupid pancake");
+        
+        NSLog(@"%@", operation.response);
+        NSLog(@"%@", operation.responseData);
+        NSLog(@"%ld", operation.response.statusCode);
     }];
 
     
     
+    
+    
+    
 
 }
+-(void)getIngredientsOfRecipe:(FoodFeedObject*)recipe{
+    
+    AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    
+
+        
+        
+        NSString* recipeString = [NSString stringWithFormat:@"http://food2fork.com/api/get?key=cbf68b839d22d6b3319ae5779d040090&rId=%@", recipe.recipeID];
+        
+        
+        [manager GET:recipeString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            
+            recipe.caption = responseObject[@"recipe"][@"ingredients"];
+            NSLog(@"%@", recipe.caption);
+            
+        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+            
+            NSLog(@"%@", operation.response);
+            NSLog(@"%@", operation.responseString);
+            NSLog(@"%ld", operation.response.statusCode);
+            
+        }];
+        
+        
+    }
+
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField endEditing:YES];
