@@ -16,6 +16,8 @@
 #import "InstagramImagePicker.h"
 #import "FoodLog.h"
 #import "RestaurantPickerTableViewController.h"
+#import "FoodFeedObject.h"
+#import "RecipeTableViewController.h"
 
 @interface CreateLogViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, CLLocationManagerDelegate, InstagramImagePickerDelegate, UIActionSheetDelegate,RestaurantPickerTableViewDelegate>
 
@@ -215,6 +217,74 @@
 
 
 
+}
+-(void)recipeRequestForString:(NSString*)string
+{
+    NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=cbf68b839d22d6b3319ae5779d040090&q=%@", string];
+    AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
+    
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    
+    
+    
+    
+    [manager GET:URLString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSArray* recipes = responseObject[@"recipes"];
+        
+        NSMutableArray* recipeResultsArray = [[NSMutableArray alloc]init];
+        for(NSDictionary* recipe in recipes){
+            
+            FoodFeedObject* recipeResultObject = [[FoodFeedObject alloc]init];
+            recipeResultObject.imageURLString = recipe[@"image_url"];
+            recipeResultObject.recipeID = recipe[@"recipe_id"];
+            
+            
+            [self getIngredientsOfRecipe:recipeResultObject];
+            
+            [recipeResultsArray addObject:recipeResultObject];
+            
+            
+            
+        }
+        
+        
+        
+    
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        
+        NSLog(@"you fucking dingus");
+    }];
+    
+
+    
+}
+-(void)getIngredientsOfRecipe:(FoodFeedObject*)recipe{
+    
+    AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    
+    
+    
+    
+    NSString* recipeString = [NSString stringWithFormat:@"http://food2fork.com/api/get?key=cbf68b839d22d6b3319ae5779d040090&rId=%@", recipe.recipeID];
+    
+    
+    [manager GET:recipeString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSArray* ingredientsArray = responseObject[@"recipe"][@"ingredients"];
+        NSString* ingredientsString = [ingredientsArray componentsJoinedByString:@"\n \n"];
+        recipe.caption = ingredientsString;
+        recipe.recipeTitle = responseObject[@"recipe"][@"title"];
+        
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        
+        NSLog(@"banana");
+        
+    }];
+    
+    
 }
 
 #pragma mark - RestaurantPickerTableViewDelegate method
