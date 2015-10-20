@@ -15,6 +15,7 @@
 #import "CreateLogViewController.h"
 #import "InstagramImagePicker.h"
 #import "FoodLog.h"
+#import "RestaurantPickerTableViewController.h"
 
 @interface CreateLogViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, CLLocationManagerDelegate, InstagramImagePickerDelegate, UIActionSheetDelegate>
 
@@ -173,15 +174,28 @@
 -(void)foursquareRequestForRestaurantName:(NSString*)restaurantName {
 
 
-    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?client_id=VENOVOCEM4E1QVRTGNOCNO40V32YHQ4FMRD0M3K4WBMYQWPS&client_secret=QVM22AMEWXEZ54VBHMGOHYE2JNMMLTQYKOKOSAK0JTGDQBLT&v=20130815&query=%@&ll=%f,%f&radius=2000", restaurantName, self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?client_id=VENOVOCEM4E1QVRTGNOCNO40V32YHQ4FMRD0M3K4WBMYQWPS&client_secret=QVM22AMEWXEZ54VBHMGOHYE2JNMMLTQYKOKOSAK0JTGDQBLT&v=20130815&ll=%f,-%f&query=%@&radius=2000", self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude, restaurantName];
 
     AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
     [manager GET:urlString
       parameters:nil
          success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
 
-             NSLog(@"you are at %f and %f with %@", self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude, responseObject);
-
+             NSArray* venues = responseObject[@"response"][@"venues"];
+             NSMutableArray* restaurantNames = [[NSMutableArray alloc]init];
+             for(NSDictionary* venue in venues){
+                 
+                 [restaurantNames addObject:venue[@"name"]];
+                 
+             }
+             
+             RestaurantPickerTableViewController* restaurantPicker = [self.storyboard instantiateViewControllerWithIdentifier:@"RestaurantPicker"];
+             restaurantPicker.restaurantNames = [NSArray arrayWithArray:restaurantNames];
+             
+             [self.navigationController pushViewController:restaurantPicker animated:YES];
+             
+             
+             
 
          } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
              NSLog(@"%@", error);
@@ -436,7 +450,11 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField endEditing:YES];
-
+    if(textField.tag == 1){
+        
+    } else if(textField.tag == 2){
+        
+    }
     return YES;
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView{

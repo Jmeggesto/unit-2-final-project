@@ -10,4 +10,6 @@
 
 @interface RestaurantPickerTableViewController : UITableViewController
 
+@property (nonatomic) NSArray<NSString*>* restaurantNames;
+
 @end
