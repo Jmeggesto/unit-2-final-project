@@ -12,7 +12,8 @@
 
 @property (nonatomic) NSString *textViewCaption;
 @property (nonatomic) NSString *imageUrlString;
-
+@property (nonatomic) NSString *userName;
+@property (nonatomic) NSString *foodOrRecipeName;
 
 
 

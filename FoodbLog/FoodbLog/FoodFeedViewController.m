@@ -116,6 +116,7 @@
         
         detailViewController.imageUrlString = self.instagramResultsArray[indexPath.row].imageURLString;
         detailViewController.textViewCaption = self.instagramResultsArray[indexPath.row].caption;
+        detailViewController.userName = self.instagramResultsArray[indexPath.row].instagramUserName;
         
     } else {
         
@@ -188,6 +189,7 @@
             recipeResultObject.imageURLString = recipe[@"image_url"];
             recipeResultObject.recipeID = recipe[@"recipe_id"];
             
+            
             [self getIngredientsOfRecipe:recipeResultObject];
             
                                               
@@ -236,7 +238,7 @@
         [manager GET:recipeString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             
             NSArray* ingredientsArray = responseObject[@"recipe"][@"ingredients"];
-            NSString* ingredientsString = [ingredientsArray componentsJoinedByString:@"\n"];
+            NSString* ingredientsString = [ingredientsArray componentsJoinedByString:@"\n \n"];
             recipe.caption = ingredientsString;
             NSLog(@"%@", recipe.caption);
             

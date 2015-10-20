@@ -14,6 +14,7 @@
 @property (nonatomic) NSString* imageURLString;
 @property (nonatomic) NSString* recipeID;
 @property (nonatomic) NSString* instagramUserName;
+@property (nonatomic) NSString* searchTerm;
 
 
 

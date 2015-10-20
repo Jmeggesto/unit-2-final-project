@@ -21,9 +21,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    if(self.userName){
+        
+        self.textView.text = [NSString stringWithFormat:@"Instagram user %@ said: %@", self.userName, self.textViewCaption];
+    } else {
+        self.textView.text = self.textViewCaption;
+    }
     self.imageView.clipsToBounds = YES;
-    self.textView.text = self.textViewCaption;
-    
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrlString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.imageView.image = image;
         
