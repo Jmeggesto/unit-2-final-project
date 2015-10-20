@@ -235,7 +235,9 @@
         
         [manager GET:recipeString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             
-            recipe.caption = responseObject[@"recipe"][@"ingredients"];
+            NSArray* ingredientsArray = responseObject[@"recipe"][@"ingredients"];
+            NSString* ingredientsString = [ingredientsArray componentsJoinedByString:@"\n"];
+            recipe.caption = ingredientsString;
             NSLog(@"%@", recipe.caption);
             
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
