@@ -451,7 +451,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField endEditing:YES];
     if(textField.tag == 1){
-        
+        [self foursquareRequestForRestaurantName:textField.text];
     } else if(textField.tag == 2){
         
     }
