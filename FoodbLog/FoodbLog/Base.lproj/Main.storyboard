@@ -57,10 +57,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2re-Ce-cZ5">
-                                <rect key="frame" x="5" y="291" width="52" height="33"/>
+                                <rect key="frame" x="6" y="285" width="523" height="33"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="PSX-Dw-CmG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Recipe"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="PSX-Dw-CmG"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="recipeButtonTapped:" destination="Jsb-ww-IDP" eventType="touchUpInside" id="Oop-Jx-cCg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -76,15 +87,25 @@
                             <constraint firstAttribute="trailing" secondItem="A81-1R-twc" secondAttribute="trailing" constant="5" id="g1R-Rb-gdV"/>
                             <constraint firstItem="2re-Ce-cZ5" firstAttribute="leading" secondItem="C4Z-ip-jVV" secondAttribute="leading" constant="5" id="hYy-vu-hk6"/>
                             <constraint firstAttribute="trailing" secondItem="bpb-aJ-F8u" secondAttribute="trailing" id="lwX-cv-SDG"/>
+                            <constraint firstItem="A81-1R-twc" firstAttribute="leading" secondItem="2re-Ce-cZ5" secondAttribute="trailing" id="mPb-LU-wPd"/>
                             <constraint firstItem="OEl-OE-ZPR" firstAttribute="leading" secondItem="C4Z-ip-jVV" secondAttribute="leading" constant="30" id="nxp-rk-zRw"/>
+                            <constraint firstItem="2re-Ce-cZ5" firstAttribute="leading" secondItem="C4Z-ip-jVV" secondAttribute="leadingMargin" constant="-14" id="qjP-fZ-aFy"/>
                             <constraint firstItem="bpb-aJ-F8u" firstAttribute="top" secondItem="Alx-8S-ud3" secondAttribute="bottom" id="rjd-Mf-Bma"/>
                             <constraint firstItem="cEJ-kC-Bb2" firstAttribute="centerX" secondItem="C4Z-ip-jVV" secondAttribute="centerX" id="sSL-a0-qZO"/>
+                            <constraint firstItem="2re-Ce-cZ5" firstAttribute="top" secondItem="Alx-8S-ud3" secondAttribute="bottom" constant="221" id="uDv-sU-Ib1"/>
                             <constraint firstItem="feP-jq-AZk" firstAttribute="top" secondItem="OEl-OE-ZPR" secondAttribute="bottom" id="vvh-fU-zex"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="KCR-rn-10p"/>
+                                <exclude reference="hYy-vu-hk6"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="dishNameLabel" destination="cEJ-kC-Bb2" id="p5X-RQ-3TO"/>
                         <outlet property="foodLogImageView" destination="gIJ-DC-VfO" id="caC-Ln-PXy"/>
+                        <outlet property="recipeButton" destination="2re-Ce-cZ5" id="VgQ-HN-bi5"/>
                         <outlet property="restaurantNameLabel" destination="A81-1R-twc" id="pSl-Zq-lRb"/>
                     </connections>
                 </viewController>
@@ -225,7 +246,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="75"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram Caption/Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsN-z7-4d2">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram Caption/Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsN-z7-4d2">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="75"/>
                                                                 <animations/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -439,7 +460,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search For Restaurant" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j5v-l0-noz">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search For Restaurant" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j5v-l0-noz">
                                 <rect key="frame" x="213" y="335" width="175" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -488,7 +509,7 @@
                                     <action selector="searchAPicOnInstagramButtonTapped:" destination="WBo-t4-PnB" eventType="touchUpInside" id="kJS-3f-brI"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search For Recipe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xgl-b7-A96">
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search For Recipe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xgl-b7-A96">
                                 <rect key="frame" x="213" y="390" width="175" height="30"/>
                                 <animations/>
                                 <constraints>

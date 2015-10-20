@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *foodLogDescription;
 @property (weak, nonatomic) IBOutlet UILabel *dishNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *experienceRecipeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *recipeButton;
 
 @end
 
@@ -27,6 +28,8 @@
     self.dishNameLabel.textColor = [UIColor flatOrangeColor];
     self.restaurantNameLabel.textColor =[UIColor flatGrayColorDark];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.recipeButton setTitleColor:[UIColor flatBlueColor] forState:UIControlStateNormal];
+    self.recipeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     
     
     self.dishNameLabel.text = self.foodLogObject.name;
@@ -59,5 +62,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)recipeButtonTapped:(UIButton *)sender {
+    
+   
+    
+   
+    
+    
+}
 
 @end
