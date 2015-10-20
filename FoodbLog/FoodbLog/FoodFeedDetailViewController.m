@@ -8,6 +8,7 @@
 
 #import "FoodFeedDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <ChameleonFramework/Chameleon.h>
 
 @interface FoodFeedDetailViewController ()
 
@@ -22,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.titleLabel.textColor = [UIColor flatOrangeColor];
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
     if(self.userName){
         
         self.titleLabel.text = [NSString stringWithFormat:@"Instagram user %@ said:", self.userName];
