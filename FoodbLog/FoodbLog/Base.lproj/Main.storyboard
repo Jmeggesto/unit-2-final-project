@@ -357,11 +357,17 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fd1-uC-8D2">
-                                <rect key="frame" x="20" y="255" width="560" height="345"/>
+                                <rect key="frame" x="20" y="286" width="560" height="314"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUZ-Ub-oZK">
+                                <rect key="frame" x="20" y="255" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -370,14 +376,23 @@
                             <constraint firstAttribute="trailing" secondItem="gww-Bo-czX" secondAttribute="trailing" id="5Dw-7a-8Mw"/>
                             <constraint firstItem="Fd1-uC-8D2" firstAttribute="leading" secondItem="jqJ-Je-O1i" secondAttribute="leadingMargin" id="7Su-nm-Loi"/>
                             <constraint firstItem="gww-Bo-czX" firstAttribute="leading" secondItem="jqJ-Je-O1i" secondAttribute="leading" id="BPW-Ip-jHG"/>
+                            <constraint firstItem="OUZ-Ub-oZK" firstAttribute="top" secondItem="gww-Bo-czX" secondAttribute="bottom" constant="10" id="BwW-KC-pNW"/>
                             <constraint firstItem="IFo-vW-N8e" firstAttribute="top" secondItem="Fd1-uC-8D2" secondAttribute="bottom" id="F1i-uz-j3T"/>
+                            <constraint firstItem="Fd1-uC-8D2" firstAttribute="top" secondItem="OUZ-Ub-oZK" secondAttribute="bottom" constant="10" id="Mam-RH-qCZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fd1-uC-8D2" secondAttribute="trailing" id="N9b-6c-D01"/>
-                            <constraint firstItem="Fd1-uC-8D2" firstAttribute="top" secondItem="gww-Bo-czX" secondAttribute="bottom" constant="10" id="Okj-G4-JI9"/>
+                            <constraint firstItem="OUZ-Ub-oZK" firstAttribute="leading" secondItem="jqJ-Je-O1i" secondAttribute="leadingMargin" id="OKz-0m-pmi"/>
+                            <constraint firstItem="Fd1-uC-8D2" firstAttribute="top" secondItem="gww-Bo-czX" secondAttribute="bottom" constant="25" id="Okj-G4-JI9"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Okj-G4-JI9"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="Ytf-EE-0II" id="YQq-OB-7nc"/>
                         <outlet property="textView" destination="Fd1-uC-8D2" id="zsA-so-L4d"/>
+                        <outlet property="titleLabel" destination="OUZ-Ub-oZK" id="e7H-Tg-o2D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="39D-1j-m3G" userLabel="First Responder" sceneMemberID="firstResponder"/>

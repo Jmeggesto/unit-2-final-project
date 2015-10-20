@@ -122,6 +122,8 @@
         
         detailViewController.imageUrlString = self.recipeResultsArray[indexPath.row].imageURLString;
         detailViewController.textViewCaption = self.recipeResultsArray[indexPath.row].caption;
+        detailViewController.recipeName = self.recipeResultsArray[indexPath.row].recipeTitle;
+
         
     }
     
@@ -240,6 +242,7 @@
             NSArray* ingredientsArray = responseObject[@"recipe"][@"ingredients"];
             NSString* ingredientsString = [ingredientsArray componentsJoinedByString:@"\n \n"];
             recipe.caption = ingredientsString;
+            recipe.recipeTitle = responseObject[@"recipe"][@"title"];
             NSLog(@"%@", recipe.caption);
             
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {

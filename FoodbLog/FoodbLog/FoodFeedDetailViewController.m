@@ -13,6 +13,7 @@
 
 @property (nonatomic) IBOutlet UIImageView* imageView;
 @property (nonatomic) IBOutlet UITextView* textView;
+@property (nonatomic) IBOutlet UILabel* titleLabel;
 
 @end
 
@@ -23,10 +24,14 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     if(self.userName){
         
-        self.textView.text = [NSString stringWithFormat:@"Instagram user %@ said: %@", self.userName, self.textViewCaption];
+        self.titleLabel.text = [NSString stringWithFormat:@"Instagram user %@ said:", self.userName];
+        
     } else {
-        self.textView.text = self.textViewCaption;
+        
+        self.titleLabel.text = self.recipeName;
+        
     }
+    self.textView.text = self.textViewCaption;
     self.imageView.clipsToBounds = YES;
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrlString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.imageView.image = image;
