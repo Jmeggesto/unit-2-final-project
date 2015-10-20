@@ -7,6 +7,7 @@
 //
 
 #import "FoodFeedDetailViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface FoodFeedDetailViewController ()
 
@@ -21,6 +22,11 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.textView.text = self.textViewCaption;
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrlString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.imageView.image = image;
+        
+        
+    }];
     
     
 }
