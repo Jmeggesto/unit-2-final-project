@@ -7,6 +7,7 @@
 //
 
 #import "FoodLogDetailViewController.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface FoodLogDetailViewController ()
 
@@ -14,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *foodLogDescription;
 @property (weak, nonatomic) IBOutlet UILabel *dishNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *experienceRecipeLabel;
 
 @end
 
@@ -21,11 +23,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.foodLogImageView.clipsToBounds = YES;
+    self.dishNameLabel.textColor = [UIColor flatOrangeColor];
+    self.restaurantNameLabel.textColor =[UIColor flatGrayColorDark];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     
-
     self.dishNameLabel.text = self.foodLogObject.name;
-    self.restaurantNameLabel.text = self.foodLogObject.restaurantName;
+
     
     self.foodLogDescription.text = self.foodLogObject.notes;
     // Note: if the object has a recipe saved, it should display the recipe text in the self.foodLogDescription.text
