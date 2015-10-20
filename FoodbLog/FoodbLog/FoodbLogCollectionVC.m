@@ -43,7 +43,7 @@
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
+    return 1;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -69,23 +69,11 @@
     FoodbLogCustomHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"foodbLogHeaderView" forIndexPath:indexPath];
     
     headerView.foodbLogHeaderLabel.textColor = [UIColor flatOrangeColor];
-
-    if (kind == UICollectionElementKindSectionHeader) {
-
-
-        if (indexPath.section == 0) {
-
-            headerView.foodbLogHeaderLabel.text = @"Food";
-            headerView.foodbLogHeaderLabel.textColor = [UIColor flatOrangeColor];
-        } else {
-            headerView.foodbLogHeaderLabel.text = @"Recipes";
-            
-        }
-    }
+    headerView.foodbLogHeaderLabel.text = @"Food";
 
     return headerView;
-
 }
+
 
 #pragma mark - Parse methods
 

@@ -356,7 +356,7 @@
 - (IBAction)searchAPicOnInstagramButtonTapped:(UIButton *)sender {
 
     [self instagramRequestForTag:self.foodLogTitleTextField.text];
-    [self foursquareRequestForRestaurantName:@"traif"];
+    
 }
 
 #pragma mark - save image data to Parse
