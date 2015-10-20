@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fDy-ci-PHG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fDy-ci-PHG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEl-OE-ZPR">
-                                <rect key="frame" x="30" y="358.5" width="540" height="192"/>
+                                <rect key="frame" x="30" y="359" width="540" height="192"/>
                                 <animations/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A81-1R-twc">
-                                <rect key="frame" x="529" y="291" width="65.5" height="20.5"/>
+                                <rect key="frame" x="529" y="291" width="66" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,7 +50,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEJ-kC-Bb2">
-                                <rect key="frame" x="5" y="319" width="590" height="31.5"/>
+                                <rect key="frame" x="5" y="319" width="590" height="32"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -272,7 +272,6 @@
                                         <connections>
                                             <outlet property="foodImage" destination="yh3-L0-dId" id="nNq-Zn-Sus"/>
                                             <outlet property="foodNameLabel" destination="IsN-z7-4d2" id="tRo-h5-P2O"/>
-                                            <segue destination="kzY-kq-uoh" kind="show" id="9Mu-f0-2Ho"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -330,7 +329,7 @@
         <!--Food Feed Detail View Controller-->
         <scene sceneID="6mF-Sb-FPW">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="kzY-kq-uoh" customClass="FoodFeedDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FoodFeedDetailViewController" hidesBottomBarWhenPushed="YES" id="kzY-kq-uoh" customClass="FoodFeedDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ENL-nX-8NI"/>
                         <viewControllerLayoutGuide type="bottom" id="IFo-vW-N8e"/>
@@ -340,7 +339,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gww-Bo-czX">
-                                <rect key="frame" x="0.0" y="64" width="600" height="225"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="225"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ytf-EE-0II">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="225"/>
@@ -357,22 +356,29 @@
                                     <constraint firstAttribute="trailing" secondItem="Ytf-EE-0II" secondAttribute="trailing" id="k89-AH-nHl"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtC-P3-sQ9">
-                                <rect key="frame" x="138" y="304" width="335" height="24"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fd1-uC-8D2">
+                                <rect key="frame" x="20" y="255" width="560" height="345"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gww-Bo-czX" firstAttribute="top" secondItem="ENL-nX-8NI" secondAttribute="bottom" id="2gE-Kl-mml"/>
                             <constraint firstAttribute="trailing" secondItem="gww-Bo-czX" secondAttribute="trailing" id="5Dw-7a-8Mw"/>
+                            <constraint firstItem="Fd1-uC-8D2" firstAttribute="leading" secondItem="jqJ-Je-O1i" secondAttribute="leadingMargin" id="7Su-nm-Loi"/>
                             <constraint firstItem="gww-Bo-czX" firstAttribute="leading" secondItem="jqJ-Je-O1i" secondAttribute="leading" id="BPW-Ip-jHG"/>
+                            <constraint firstItem="IFo-vW-N8e" firstAttribute="top" secondItem="Fd1-uC-8D2" secondAttribute="bottom" id="F1i-uz-j3T"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fd1-uC-8D2" secondAttribute="trailing" id="N9b-6c-D01"/>
+                            <constraint firstItem="Fd1-uC-8D2" firstAttribute="top" secondItem="gww-Bo-czX" secondAttribute="bottom" constant="10" id="Okj-G4-JI9"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="Ytf-EE-0II" id="YQq-OB-7nc"/>
+                        <outlet property="textView" destination="Fd1-uC-8D2" id="zsA-so-L4d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="39D-1j-m3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -431,7 +437,7 @@
                                     </mask>
                                 </variation>
                             </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What did you eat? " textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O70-xC-XVh">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What did you eat? " textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O70-xC-XVh">
                                 <rect key="frame" x="230" y="80" width="142" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -628,7 +634,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6yX-jP-zQf" id="Fjl-Fn-Bhc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </tableViewCellContentView>

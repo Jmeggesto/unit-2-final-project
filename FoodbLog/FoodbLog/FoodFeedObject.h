@@ -13,6 +13,8 @@
 @property (nonatomic) NSString* caption;
 @property (nonatomic) NSString* imageURLString;
 @property (nonatomic) NSString* recipeID;
+@property (nonatomic) NSString* instagramUserName;
+
 
 
 @end

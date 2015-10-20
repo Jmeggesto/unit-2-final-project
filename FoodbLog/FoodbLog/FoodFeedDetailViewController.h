@@ -10,7 +10,10 @@
 
 @interface FoodFeedDetailViewController : UIViewController
 
-@property (nonatomic) IBOutlet UIImageView* imageView;
+@property (nonatomic) NSString *textViewCaption;
+@property (nonatomic) NSString *imageUrlString;
+
+
 
 
 @end

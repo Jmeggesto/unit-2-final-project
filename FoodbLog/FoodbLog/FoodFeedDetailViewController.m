@@ -10,13 +10,19 @@
 
 @interface FoodFeedDetailViewController ()
 
+@property (nonatomic) IBOutlet UIImageView* imageView;
+@property (nonatomic) IBOutlet UITextView* textView;
+
 @end
 
 @implementation FoodFeedDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.textView.text = self.textViewCaption;
+    
+    
 }
 
 

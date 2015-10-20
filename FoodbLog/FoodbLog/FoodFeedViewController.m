@@ -12,6 +12,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "FoodFeedObject.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "FoodFeedDetailViewController.h"
 
 
 
@@ -108,6 +109,22 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    FoodFeedDetailViewController* detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FoodFeedDetailViewController"];
+    
+    if(self.segmentedControl.selectedSegmentIndex == 0) {
+        
+        
+        detailViewController.imageUrlString = self.instagramResultsArray[indexPath.row].imageURLString;
+        detailViewController.textViewCaption = self.instagramResultsArray[indexPath.row].caption;
+        
+    } else {
+        
+        detailViewController.imageUrlString = self.recipeResultsArray[indexPath.row].imageURLString;
+        detailViewController.textViewCaption = self.recipeResultsArray[indexPath.row].caption;
+        
+    }
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
     
 }
 
@@ -130,10 +147,10 @@
             
             resultObject.imageURLString = result[@"images"][@"standard_resolution"][@"url"];
             resultObject.caption = result[@"caption"][@"text"];
+            resultObject.instagramUserName = result[@"user"][@"username"];
             
             [self.instagramResultsArray addObject:resultObject];
-            
-            
+           
             
             
         }
