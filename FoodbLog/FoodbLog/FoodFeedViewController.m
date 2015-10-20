@@ -81,10 +81,13 @@
     if(self.segmentedControl.selectedSegmentIndex == 0){
     
     FoodFeedObject* objectForCell = self.instagramResultsArray[indexPath.row];
+        
     
     
     [cell.foodImage sd_setImageWithURL:[NSURL URLWithString:objectForCell.imageURLString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         cell.foodImage.image = image;
+        
+        cell.foodNameLabel.text = [NSString stringWithFormat:@"#%@ by %@", self.instagramSearchString, objectForCell.instagramUserName];
     
 
     }];
@@ -94,6 +97,7 @@
         [cell.foodImage sd_setImageWithURL:[NSURL URLWithString:objectForCell.imageURLString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             cell.foodImage.image = image;
             
+            cell.foodNameLabel.text = objectForCell.recipeTitle;
             
         }];
         
