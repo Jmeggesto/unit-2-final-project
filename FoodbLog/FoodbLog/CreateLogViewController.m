@@ -451,7 +451,9 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField endEditing:YES];
     if(textField.tag == 1){
-        [self foursquareRequestForRestaurantName:textField.text];
+        
+        NSString* stringToSearch = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        [self foursquareRequestForRestaurantName:stringToSearch];
     } else if(textField.tag == 2){
         
     }
