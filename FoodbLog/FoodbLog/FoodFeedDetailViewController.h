@@ -10,4 +10,7 @@
 
 @interface FoodFeedDetailViewController : UIViewController
 
+@property (nonatomic) IBOutlet UIImageView* imageView;
+
+
 @end
