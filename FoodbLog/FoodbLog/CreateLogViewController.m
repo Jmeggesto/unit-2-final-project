@@ -174,7 +174,7 @@
 -(void)foursquareRequestForRestaurantName:(NSString*)restaurantName {
 
 
-    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?client_id=VENOVOCEM4E1QVRTGNOCNO40V32YHQ4FMRD0M3K4WBMYQWPS&client_secret=QVM22AMEWXEZ54VBHMGOHYE2JNMMLTQYKOKOSAK0JTGDQBLT&v=20130815&ll=%f,-%f&query=%@&radius=2000", self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude, restaurantName];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?client_id=VENOVOCEM4E1QVRTGNOCNO40V32YHQ4FMRD0M3K4WBMYQWPS&client_secret=QVM22AMEWXEZ54VBHMGOHYE2JNMMLTQYKOKOSAK0JTGDQBLT&v=20130815&ll=%f,%f&query=%@&radius=2000", self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude, restaurantName];
 
     AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
     [manager GET:urlString
