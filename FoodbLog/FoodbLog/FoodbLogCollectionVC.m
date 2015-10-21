@@ -34,6 +34,8 @@
     UICollectionViewFlowLayout *layout = self.collectionViewLayout;
     layout.itemSize = CGSizeMake(width, width +heightAdjustment);
 
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FoodbLog_White_Logo.png"]];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

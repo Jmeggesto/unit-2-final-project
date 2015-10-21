@@ -102,6 +102,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem image="FoodbLog_White_Logo.png" id="4oX-eZ-SpV"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dishNameLabel" destination="cEJ-kC-Bb2" id="p5X-RQ-3TO"/>
                         <outlet property="foodLogDescription" destination="OEl-OE-ZPR" id="YMd-cJ-4cM"/>
@@ -794,6 +798,7 @@
     </scenes>
     <resources>
         <image name="Food Filled-25" width="25" height="25"/>
+        <image name="FoodbLog_White_Logo.png" width="94" height="33"/>
         <image name="Fork-32" width="32" height="32"/>
         <image name="FullSizeRender" width="640" height="627"/>
         <image name="Instagram" width="32" height="32"/>

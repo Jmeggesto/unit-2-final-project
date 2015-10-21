@@ -48,7 +48,7 @@
     
     }];
 
-    
+    //    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FoodbLog_White_Logo.png"]];
 }
 
 - (void)didReceiveMemoryWarning {
