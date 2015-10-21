@@ -11,11 +11,10 @@
 
 @interface FoodLogDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *foodLogImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *foodLogImageView; // food image
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
-@property (weak, nonatomic) IBOutlet UITextView *foodLogDescription;
-@property (weak, nonatomic) IBOutlet UILabel *dishNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *experienceRecipeLabel;
+@property (weak, nonatomic) IBOutlet UITextView *foodLogDescription; // notes
+@property (weak, nonatomic) IBOutlet UILabel *dishNameLabel; // dish title
 @property (weak, nonatomic) IBOutlet UIButton *recipeButton;
 
 @end
@@ -34,10 +33,10 @@
     
     self.dishNameLabel.text = self.foodLogObject.name;
 
-    
     self.foodLogDescription.text = self.foodLogObject.notes;
     // Note: if the object has a recipe saved, it should display the recipe text in the self.foodLogDescription.text
-
+    
+    
     PFFile *imageFile = self.foodLogObject.image;
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
