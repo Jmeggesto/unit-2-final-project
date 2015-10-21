@@ -41,8 +41,6 @@
     [cell.foodImage sd_setImageWithURL:[NSURL URLWithString:self.imageURLArray[indexPath.row]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         cell.foodImage.image = image;
     }];
-
-    
     
     return cell;
 }
@@ -50,6 +48,10 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.delegate imagePickerDidSelectImageWithURL:self.imageURLArray[indexPath.row]];
+    
+    FoodImagePickerCustomCVC *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.alpha = 0.3;
+    
     
 }
 

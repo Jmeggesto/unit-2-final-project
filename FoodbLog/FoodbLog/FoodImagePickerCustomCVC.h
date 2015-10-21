@@ -10,6 +10,6 @@
 
 @interface FoodImagePickerCustomCVC : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *foodImage;
-
+@property (nonatomic, getter=isHighlighted) BOOL highlighted; 
 
 @end
