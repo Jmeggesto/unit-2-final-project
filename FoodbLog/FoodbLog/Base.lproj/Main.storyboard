@@ -5,6 +5,20 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="JCP-91-CaQ">
+            <objects>
+                <navigationController id="gZ2-gQ-9bz" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SIA-ad-cNd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IVI-ZD-jJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1049" y="-1410"/>
+        </scene>
         <!--Food Log Detail View Controller-->
         <scene sceneID="kpe-fw-VRg">
             <objects>
@@ -102,9 +116,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem image="FoodbLog_White_Logo.png" id="4oX-eZ-SpV"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dishNameLabel" destination="cEJ-kC-Bb2" id="p5X-RQ-3TO"/>
@@ -116,12 +128,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjD-ds-XJO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="312" y="-1417"/>
+            <point key="canvasLocation" x="338" y="-1439"/>
         </scene>
         <!--Food Logs CustomCollectionVC-->
         <scene sceneID="Won-OC-9GV">
             <objects>
-                <collectionViewController title="Food bLog" id="Ej6-zJ-2Ib" userLabel="Food Logs CustomCollectionVC" customClass="FoodbLogCollectionVC" sceneMemberID="viewController">
+                <collectionViewController id="Ej6-zJ-2Ib" userLabel="Food Logs CustomCollectionVC" customClass="FoodbLogCollectionVC" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pCR-CD-WKv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -194,7 +206,7 @@
                             <outlet property="delegate" destination="Ej6-zJ-2Ib" id="sTd-I6-2Ys"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="FoodbLog" id="VaL-yh-FpB">
+                    <navigationItem key="navigationItem" id="VaL-yh-FpB">
                         <barButtonItem key="rightBarButtonItem" image="Fork-32" id="PxL-bH-ed2">
                             <color key="tintColor" red="1" green="0.65156431479999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -798,7 +810,6 @@
     </scenes>
     <resources>
         <image name="Food Filled-25" width="25" height="25"/>
-        <image name="FoodbLog_White_Logo.png" width="94" height="33"/>
         <image name="Fork-32" width="32" height="32"/>
         <image name="FullSizeRender" width="640" height="627"/>
         <image name="Instagram" width="32" height="32"/>
