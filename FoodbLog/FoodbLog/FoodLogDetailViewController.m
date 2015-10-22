@@ -36,7 +36,7 @@
 
     self.foodLogDescription.text = self.foodLogObject.notes;
     // Note: if the object has a recipe saved, it should display the recipe text in the self.foodLogDescription.text
-    
+    [self.foodLogDescription setFont:[UIFont systemFontOfSize:24.0f]];
     
     PFFile *imageFile = self.foodLogObject.image;
     
