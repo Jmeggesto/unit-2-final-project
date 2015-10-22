@@ -46,12 +46,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.segmentedControl setSelectedSegmentIndex:0];
-    self.instagramSearchString = @"foodporn";
+    self.instagramSearchString = @"whatsonyourplate";
     self.recipeSearchString = @"pizza";
     
     NSLog(@"%@", self.instagramResultsArray);
     
-    
+    [self.view endEditing:YES];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -205,7 +205,7 @@
             
             [self.recipeResultsArray addObject:recipeResultObject];
             
-            NSLog(@"%@", recipeResultObject);
+            //NSLog(@"%@", recipeResultObject);
             
         }
         
