@@ -235,7 +235,7 @@
 {
     NSString* formattedInputString = [string stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     
-    NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=1c8230d5345097e5019e288eb8203983&q=%@", formattedInputString];
+    NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=54f7d87124b73e5b6ea3a30f7ec3eb54&q=%@", formattedInputString];
     AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
     
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
