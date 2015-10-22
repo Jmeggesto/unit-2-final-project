@@ -17,7 +17,7 @@
 #import "FoodLog.h"
 #import "RestaurantPickerTableViewController.h"
 
-@interface CreateLogViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, CLLocationManagerDelegate, InstagramImagePickerDelegate, UIActionSheetDelegate>
+@interface CreateLogViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, CLLocationManagerDelegate, InstagramImagePickerDelegate, UIActionSheetDelegate,RestaurantPickerTableViewDelegate>
 
 
 @property (nonatomic) IBOutlet UITextField *foodLogTitleTextField;
@@ -92,6 +92,13 @@
 
     self.foodLogImageView.layer.masksToBounds = YES;
     self.foodLogImageView.layer.cornerRadius = 10;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.view endEditing:YES];
+    
 }
 
 #pragma mark - Formatting Methods
@@ -192,6 +199,8 @@
              RestaurantPickerTableViewController* restaurantPicker = [self.storyboard instantiateViewControllerWithIdentifier:@"RestaurantPicker"];
              restaurantPicker.restaurantNames = [NSArray arrayWithArray:restaurantNames];
              
+             restaurantPicker.delegate = self;
+             
              [self.navigationController pushViewController:restaurantPicker animated:YES];
              
              
@@ -207,6 +216,14 @@
 
 
 }
+
+#pragma mark - RestaurantPickerTableViewDelegate method
+
+- (void) didSelectRestaurant:(NSString *)restaurant {
+    self.restaurantSearchTextField.text = restaurant;
+    [self.navigationController popViewControllerAnimated:YES]; 
+}
+
 
 #pragma mark - Image Picker Controller Delegate methods
 

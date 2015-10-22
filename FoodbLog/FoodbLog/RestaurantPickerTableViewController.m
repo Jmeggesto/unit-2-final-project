@@ -34,13 +34,20 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+   
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantNameCell" forIndexPath:indexPath];
     
     cell.textLabel.text = self.restaurantNames[indexPath.row];
     
-   
-    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+     
+    NSString *restaurant = self.restaurantNames[indexPath.row];
+    [self.delegate didSelectRestaurant:restaurant]; 
+    
 }
 
 @end

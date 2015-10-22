@@ -32,6 +32,7 @@
     
     
     self.dishNameLabel.text = self.foodLogObject.name;
+    self.restaurantNameLabel.text = self.foodLogObject.restaurantName; 
 
     self.foodLogDescription.text = self.foodLogObject.notes;
     // Note: if the object has a recipe saved, it should display the recipe text in the self.foodLogDescription.text
