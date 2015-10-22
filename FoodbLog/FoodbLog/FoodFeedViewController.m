@@ -58,7 +58,7 @@
     
     [self instagramRequestForString:self.instagramSearchString];
     
-    self.searchTextField.inputAccessoryView = [[UIView alloc] init];
+    //self.searchTextField.inputAccessoryView = [[UIView alloc] init];
 }
 
 
