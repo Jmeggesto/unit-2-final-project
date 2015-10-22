@@ -137,7 +137,7 @@
 
 -(void)instagramRequestForString:(NSString*)string
 {
-    
+    string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     NSString* urlString = [NSString stringWithFormat:@"https://api.instagram.com/v1/tags/%@/media/recent?client_id=ac0ee52ebb154199bfabfb15b498c067", string];
     
@@ -176,6 +176,8 @@
 }
 -(void)recipeRequestForString:(NSString*)string
 {
+    string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
     NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=cbf68b839d22d6b3319ae5779d040090&q=%@", string];
     AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
   
