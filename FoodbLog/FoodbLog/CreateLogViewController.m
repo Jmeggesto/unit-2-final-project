@@ -543,7 +543,6 @@
         
         NSString* stringToSearch = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         [self foursquareRequestForRestaurantName:stringToSearch];
-        [self instagramRequestForTag:self.foodLogTitleTextField.text];
     } else if(textField.tag == 2){
         NSLog(@"tag is 2!");
         [self recipeRequestForString:textField.text];
