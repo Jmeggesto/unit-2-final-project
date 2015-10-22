@@ -27,7 +27,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.restaurantNames.count;
+    return self.restaurantData.count;
 }
 
 
@@ -35,7 +35,9 @@
    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantNameCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = self.restaurantNames[indexPath.row];
+    cell.textLabel.text = self.restaurantData[indexPath.row][@"restaurantName"];
+    cell.detailTextLabel.text = self.restaurantData[indexPath.row][@"restaurantAddress"];
+    
     
     return cell;
 }
@@ -43,7 +45,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
      
-    NSString *restaurant = self.restaurantNames[indexPath.row];
+    NSString *restaurant = self.restaurantData[indexPath.row][@"restaurantName"];
     [self.delegate didSelectRestaurant:restaurant]; 
     
 }

@@ -176,9 +176,9 @@
 }
 -(void)recipeRequestForString:(NSString*)string
 {
-    string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+    string = [string stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     
-    NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=cbf68b839d22d6b3319ae5779d040090&q=%@", string];
+    NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=1c8230d5345097e5019e288eb8203983&q=%@", string];
     AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
   
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
@@ -240,7 +240,7 @@
 
         
         
-        NSString* recipeString = [NSString stringWithFormat:@"http://food2fork.com/api/get?key=cbf68b839d22d6b3319ae5779d040090&rId=%@", recipe.recipeID];
+        NSString* recipeString = [NSString stringWithFormat:@"http://food2fork.com/api/get?key=1c8230d5345097e5019e288eb8203983&rId=%@", recipe.recipeID];
         
         
         [manager GET:recipeString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
@@ -249,7 +249,6 @@
             NSString* ingredientsString = [ingredientsArray componentsJoinedByString:@"\n \n"];
             recipe.caption = ingredientsString;
             recipe.recipeTitle = responseObject[@"recipe"][@"title"];
-            NSLog(@"%@", recipe.caption);
             
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
             

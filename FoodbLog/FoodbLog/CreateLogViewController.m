@@ -19,7 +19,7 @@
 #import "FoodFeedObject.h"
 #import "RecipeTableViewController.h"
 
-@interface CreateLogViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, CLLocationManagerDelegate, InstagramImagePickerDelegate, UIActionSheetDelegate,RestaurantPickerTableViewDelegate>
+@interface CreateLogViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, CLLocationManagerDelegate, InstagramImagePickerDelegate, UIActionSheetDelegate,RestaurantPickerTableViewDelegate, RecipeTableViewDelegate>
 
 
 @property (nonatomic) IBOutlet UITextField *foodLogTitleTextField;
@@ -31,6 +31,8 @@
 
 @property (nonatomic) UIImagePickerController *imagePickerController;
 @property (copy, nonatomic) NSString *lastChosenMediaType;
+
+@property (nonatomic) NSString* recipeIngredientsToSave;
 
 @property (weak, nonatomic) IBOutlet UIButton *snapAPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *searchAPicButton;
@@ -136,8 +138,10 @@
 
 #pragma mark - API requests methods
 
--(void)instagramRequestForTag:(NSString*)foodName {
+-(void)instagramRequestForTag:(NSString*)foodName
+{
 
+    
     foodName = [foodName stringByReplacingOccurrencesOfString:@" " withString:@""];
 
     NSString *urlString = [NSString stringWithFormat:@"https://api.instagram.com/v1/tags/%@/media/recent?client_id=ac0ee52ebb154199bfabfb15b498c067", foodName];
@@ -147,28 +151,29 @@
     [manager GET:urlString
       parameters:nil
          success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-
+             
              NSArray *results = responseObject[@"data"];
-
-
+             
+             
              NSMutableArray* searchResults = [[NSMutableArray alloc] init];
-
+             
              // loop through all json posts
              for (NSDictionary *result in results) {
                  ;
                  [searchResults addObject:result[@"images"][@"standard_resolution"][@"url"]];
-
+                 
              }
-
+             
              //pass the searchResults over to the CollectionViewController
              InstagramImagePicker* instagramPicker = [self.storyboard instantiateViewControllerWithIdentifier:@"InstagramImagePicker"];
-
+             
              instagramPicker.delegate = self;
              instagramPicker.imageURLArray = searchResults;
-
+             
              [self.navigationController pushViewController:instagramPicker animated:YES];
-
+             
              NSLog(@"%@", searchResults);
+             
 
 
          } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
@@ -191,15 +196,23 @@
          success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
 
              NSArray* venues = responseObject[@"response"][@"venues"];
-             NSMutableArray* restaurantNames = [[NSMutableArray alloc]init];
+             NSMutableArray<NSMutableDictionary*>* restaurantData = [[NSMutableArray alloc]init];
              for(NSDictionary* venue in venues){
                  
-                 [restaurantNames addObject:venue[@"name"]];
+                 NSMutableDictionary* restaurantNamesAndAddresses = [[NSMutableDictionary alloc]init];
+
+                 
+                 [restaurantNamesAndAddresses setObject:venue[@"name"] forKey:@"restaurantName"];
+                 
+                 [restaurantNamesAndAddresses setObject:venue[@"location"][@"address"] forKey:@"restaurantAddress"];
+                 
+                 [restaurantData addObject:restaurantNamesAndAddresses];
                  
              }
              
              RestaurantPickerTableViewController* restaurantPicker = [self.storyboard instantiateViewControllerWithIdentifier:@"RestaurantPicker"];
-             restaurantPicker.restaurantNames = [NSArray arrayWithArray:restaurantNames];
+             
+             restaurantPicker.restaurantData = [NSArray arrayWithArray:restaurantData];
              
              restaurantPicker.delegate = self;
              
@@ -220,7 +233,9 @@
 }
 -(void)recipeRequestForString:(NSString*)string
 {
-    NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=cbf68b839d22d6b3319ae5779d040090&q=%@", string];
+    NSString* formattedInputString = [string stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    
+    NSString* URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=1c8230d5345097e5019e288eb8203983&q=%@", formattedInputString];
     AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
     
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
@@ -232,66 +247,53 @@
         
         NSArray* recipes = responseObject[@"recipes"];
         
-        NSMutableArray* recipeResultsArray = [[NSMutableArray alloc]init];
+        NSMutableArray<FoodFeedObject*>* recipeResultsArray = [[NSMutableArray alloc]init];
         for(NSDictionary* recipe in recipes){
+            
             
             FoodFeedObject* recipeResultObject = [[FoodFeedObject alloc]init];
             recipeResultObject.imageURLString = recipe[@"image_url"];
             recipeResultObject.recipeID = recipe[@"recipe_id"];
-            
-            
-            [self getIngredientsOfRecipe:recipeResultObject];
+            recipeResultObject.recipeTitle = recipe[@"title"];
             
             [recipeResultsArray addObject:recipeResultObject];
-            
-            
-            
+    
         }
         
+        RecipeTableViewController* recipeTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RecipeTableViewController"];
         
+        recipeTVC.recipeResultsArray = recipeResultsArray;
+        recipeTVC.delegate = self;
+        
+        [self.navigationController pushViewController:recipeTVC animated:YES];
         
     
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         
-        NSLog(@"you fucking dingus");
+        NSLog(@"failure");
     }];
     
 
     
 }
--(void)getIngredientsOfRecipe:(FoodFeedObject*)recipe{
-    
-    AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
-    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    
-    
-    
-    
-    NSString* recipeString = [NSString stringWithFormat:@"http://food2fork.com/api/get?key=cbf68b839d22d6b3319ae5779d040090&rId=%@", recipe.recipeID];
-    
-    
-    [manager GET:recipeString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
-        NSArray* ingredientsArray = responseObject[@"recipe"][@"ingredients"];
-        NSString* ingredientsString = [ingredientsArray componentsJoinedByString:@"\n \n"];
-        recipe.caption = ingredientsString;
-        recipe.recipeTitle = responseObject[@"recipe"][@"title"];
-        
-        
-    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-        
-        NSLog(@"banana");
-        
-    }];
-    
-    
-}
+
 
 #pragma mark - RestaurantPickerTableViewDelegate method
 
 - (void) didSelectRestaurant:(NSString *)restaurant {
     self.restaurantSearchTextField.text = restaurant;
     [self.navigationController popViewControllerAnimated:YES]; 
+}
+
+#pragma mark - RecipeTableViewDelegate method
+-(void)didSelectRecipe:(NSString *)recipe withIngredients:(NSString *)ingredients {
+    
+    self.recipeSearchTextField.text = recipe;
+    self.recipeIngredientsToSave = ingredients;
+    NSLog(@"%@", self.recipeIngredientsToSave);
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
 }
 
 
@@ -541,8 +543,13 @@
         
         NSString* stringToSearch = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         [self foursquareRequestForRestaurantName:stringToSearch];
+        [self instagramRequestForTag:self.foodLogTitleTextField.text];
     } else if(textField.tag == 2){
+        NSLog(@"tag is 2!");
+        [self recipeRequestForString:textField.text];
+    } else {
         
+        NSLog(@"what");
     }
     return YES;
 }

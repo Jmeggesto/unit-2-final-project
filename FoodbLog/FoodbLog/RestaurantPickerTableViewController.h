@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol RestaurantPickerTableViewDelegate <NSObject>
 
 - (void) didSelectRestaurant:(NSString *)restaurant;
@@ -16,7 +17,7 @@
 
 @interface RestaurantPickerTableViewController : UITableViewController
 
-@property (nonatomic) NSArray<NSString*>* restaurantNames;
+@property (nonatomic) NSArray<NSDictionary*>* restaurantData;
 
 @property (nonatomic, weak) id <RestaurantPickerTableViewDelegate> delegate;
 
