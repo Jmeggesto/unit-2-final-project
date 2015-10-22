@@ -478,12 +478,14 @@
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView{
       [textView setText:@""];
+    textView.textColor = [UIColor blackColor];
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView{
 
     if ([textView.text isEqualToString:@""]) {
-        [textView setText:@"Enter Your Experience..."];
+        textView.textColor = [UIColor lightGrayColor];
+        [textView setText:@"Wanna Save Some Notes?"];
     }
 }
 
